@@ -3,9 +3,10 @@ import classNames from 'classname'
 
 import './List.scss'
 import Budge from '../Budge/Budge'
+import removeSvg from '../../assets/img/removeSvg.svg'
 
 const List = ({ items, isRemovable, onClick }) => {
-
+	console.log(items)
 	return (
 		<ul
 			onClick={onClick}
@@ -20,6 +21,11 @@ const List = ({ items, isRemovable, onClick }) => {
 							: <Budge color={i.color} />}
 
 						<span>{i.name}</span>
+						{isRemovable &&
+							<img
+								src={removeSvg}
+								className={'list__remove-icon'}
+								alt={'remove icon'} />}
 					</li>
 				})
 			}

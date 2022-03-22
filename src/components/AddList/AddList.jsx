@@ -5,12 +5,32 @@ import Budge from '../Budge/Budge'
 import './AddList.scss'
 import closeSvg from '../../assets/img/closeSvg.svg'
 
-const AddList = ({ colors }) => {
+const AddList = ({ colors, addLists }) => {
 
-	// console.log(p)
-	let [visiblePupup, setVisiblePopup] = useState(false)
-	let [selectedColor, selectColor] = useState(colors[0].id)
-	console.log(selectedColor)
+	const [visiblePupup, setVisiblePopup] = useState(false)
+	const [selectedColor, selectColor] = useState(colors[0].id)
+	const [inputValue, setInputValue] = useState('')
+
+	const onClose = () => {
+		setVisiblePopup(false)
+		setInputValue('')
+		selectColor(colors[0].id)
+	}
+
+	const addList = () => {
+		if (!inputValue) {
+			alert('Введите название')
+			return
+		}
+
+		addLists({
+			name: inputValue,
+			colorId: selectedColor,
+			color: colors.find(i => selectedColor === i.id).name
+		})
+		onClose()
+	}
+
 	return (
 		<div className='add-list'>
 			<List
@@ -29,14 +49,21 @@ const AddList = ({ colors }) => {
 			{
 				visiblePupup &&
 				<div className={'add-list__popup'}>
-					<img src={closeSvg}
+					<img
+						src={closeSvg}
 						alt="close"
-						onClick={() => setVisiblePopup(false)}
+						onClick={onClose}
 						className={'add-list__popup-close-btn'} />
-					<input className={'field'} type="text" placeholder={'Название папки'} />
-					<div className={'add-list__popup-colors'}>
+					<input
+						className={'field'}
+						type="text"
+						onChange={e => setInputValue(e.target.value)}
+						value={inputValue}
+						placeholder={'Название задачи'} />
+					<div
+						className={'add-list__popup-colors'}>
 						{
-							colors.map(({ id, hex, name }) => <Budge
+							colors.map(({ id, name }) => <Budge
 								key={id}
 								onClick={() => selectColor(id)}
 								color={name}
@@ -45,7 +72,10 @@ const AddList = ({ colors }) => {
 						}
 					</div>
 
-					<button className={'button'}>Добавить</button>
+					<button
+						className={'button'}
+						onClick={addList}
+					>Добавить</button>
 				</div>
 			}
 		</div>
