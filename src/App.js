@@ -24,6 +24,12 @@ function App() {
 		])
 	}
 
+	const onRemove = (id) => {
+		window.confirm('Вы действительн хотите удалить элемент')
+			&& setLists(lists.filter(i => i.id !== id))
+
+	}
+
 	return (
 		<div className={'todo'}>
 			<div className={'todo__sidebar'}>
@@ -37,8 +43,7 @@ function App() {
 					}
 				]}
 				/>
-				<List items={lists} isRemovable
-				/>
+				<List items={lists} isRemovable onRemove={onRemove} />
 				<AddList addLists={addLists} colors={db.colors} />
 
 

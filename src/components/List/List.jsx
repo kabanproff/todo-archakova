@@ -5,7 +5,7 @@ import './List.scss'
 import Budge from '../Budge/Budge'
 import removeSvg from '../../assets/img/removeSvg.svg'
 
-const List = ({ items, isRemovable, onClick }) => {
+const List = ({ items, isRemovable, onClick, onRemove }) => {
 	console.log(items)
 	return (
 		<ul
@@ -14,7 +14,7 @@ const List = ({ items, isRemovable, onClick }) => {
 			{
 				items.map((i, d) => {
 					// console.log(i, i.name, i.icon)
-					return <li key={d} className={classNames(i.className, { 'active': i.active })}>
+					return <li key={i.id || d} className={classNames(i.className, { 'active': i.active })}>
 
 						{i.icon
 							? <i>{i.icon}</i>
@@ -24,6 +24,7 @@ const List = ({ items, isRemovable, onClick }) => {
 						{isRemovable &&
 							<img
 								src={removeSvg}
+								onClick={() => onRemove(i.id)}
 								className={'list__remove-icon'}
 								alt={'remove icon'} />}
 					</li>
