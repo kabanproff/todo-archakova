@@ -15,14 +15,16 @@ body {
 }
 
 .todo {
-	position: absolute;
+	display: flex;
+	// position: absolute;
 	left: 50%;
 	top: 50%;
-	max-width: 750px;
+	// width: 750px;
 	// height: 530px;
-	transform: translate(-50%, -50%);
+	// transform: translate(-50%, -50%);
 	box-shadow: 1px 7px 10px #c5bebe;
 	border-radius: 10px;
+
 	&__sidebar {
 		background: #e5e5e5;
 		width: 200px;
@@ -30,7 +32,12 @@ body {
 		border-right: 1px solid #f1f1f1;
 		padding: 60px 20px;
 	}
+	&__tasks {
+		flex: 1;
+		padding: 60px;
+	}
 }
+
 .field {
 	background-color: #fff;
 	border: 1px solid #efefef;

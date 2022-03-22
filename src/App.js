@@ -3,6 +3,7 @@ import AddList from './components/AddList/AddList';
 import List from './components/List/List';
 
 import db from './assets/db.json'
+import Tasks from './components/Tasks/Tasks';
 
 
 function App() {
@@ -45,12 +46,9 @@ function App() {
 				/>
 				<List items={lists} isRemovable onRemove={onRemove} />
 				<AddList addLists={addLists} colors={db.colors} />
-
-
-				<div className={'todo__tasks'}>
-
-				</div>
-
+			</div>
+			<div className={'todo__tasks'}>
+				<Tasks />
 			</div>
 		</div>
 	);
