@@ -18,6 +18,8 @@ const List = ({ items, isRemovable, onClick, onClickItem, onRemove, activeItem }
 		}
 	}
 	// console.log('onclick in list ', onClick)
+	// debugger
+	// !activeItem && i.active ? i.active : activeItem && activeItem.id === i.id
 	return (
 		<ul
 			onClick={onClick}
@@ -29,7 +31,7 @@ const List = ({ items, isRemovable, onClick, onClickItem, onRemove, activeItem }
 						key={i.id || d}
 						onClick={onClickItem ? () => onClickItem(i) : null}
 						className={classNames(i.className, {
-							active: activeItem && activeItem.id === i.id
+							active: !activeItem && i.active ? i.active : activeItem && activeItem.id === i.id
 						})}
 					>
 

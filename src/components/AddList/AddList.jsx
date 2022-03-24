@@ -7,14 +7,13 @@ import './AddList.scss'
 import closeSvg from '../../assets/img/closeSvg.svg'
 
 const AddList = ({ colors, addLists }) => {
-	// console.log(colors)
+
 	const [visiblePupup, setVisiblePopup] = useState(false)
 	const [selectedColor, selectColor] = useState(1)
 	const [isLoading, setIsLoading] = useState(false)
 	const [inputValue, setInputValue] = useState('')
 
 	useEffect(() => {
-		// console.log(colors)
 		Array.isArray(colors) && selectColor(colors[0].id)
 	}, [colors])
 
@@ -45,10 +44,10 @@ const AddList = ({ colors, addLists }) => {
 						name: colorName
 					}
 				}
-				console.log(data)
 				addLists(newList)
 				onClose()
 			})
+			.catch(e => alert('Ошибка при добавлении списка'))
 			.finally(() => {
 				setIsLoading(false)
 
@@ -98,6 +97,7 @@ const AddList = ({ colors, addLists }) => {
 					</div>
 
 					<button
+						disabled={isLoading}
 						className={'button'}
 						onClick={addList}
 					> {isLoading ? 'Добавление...' : 'Добавить'}</button>

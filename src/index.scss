@@ -75,4 +75,7 @@ body {
 			background: darken(#f4f6f8, 6%);
 		}
 	}
+	&:disabled {
+		background: #d9e2de;
+	}
 }

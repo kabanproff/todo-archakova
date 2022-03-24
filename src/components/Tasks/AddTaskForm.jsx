@@ -29,11 +29,14 @@ const AddTaskForm = ({ currentTask, onAddTask, visibleTasksZero }) => {
 
 		axios.post('http://localhost:3003/tasks', newTask)
 			.then(({ data }) => {
-				// console.log(data)
 				setIsLoading(false)
 				onAddTask(currentTask, data)
-				toggleFomVisible()
 			})
+			.catch(e => {
+				setIsLoading(isLoading ? true : false)
+				alert('Ошибка при добавлении задачи')
+			})
+			.finally(() => toggleFomVisible())
 	}
 
 	return (
@@ -55,11 +58,13 @@ const AddTaskForm = ({ currentTask, onAddTask, visibleTasksZero }) => {
 				/>
 
 				<button
+					disabled={isLoading}
 					className={'button'}
 					onClick={addTask}
 				> {isLoading ? 'Добавление...' : 'Добавить задачу'}</button>
 
 				<button
+
 					className={'button button--grey'}
 					onClick={toggleFomVisible}
 				> Отмена</button>

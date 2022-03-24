@@ -17,13 +17,9 @@ const Tasks = ({ list, onEditTitle, onAddTask }) => {
 				name: newTitle
 			})
 				.then((rs) => {
-					console.log(rs)
 					onEditTitle(list.id, newTitle)
-
-
 				})
 				.catch((e) => alert('Не удалось обновить название списка, возможно нет соединения', e.message))
-
 		}
 	}
 
@@ -33,7 +29,7 @@ const Tasks = ({ list, onEditTitle, onAddTask }) => {
 				<img onClick={editTitle} src={editSvg} alt={'edit title'} />
 			</h2>
 			<div className={'tasks__items'}>
-				{!list.tasks.length && isVisible && <h2>Задачи отсутствуют</h2>}
+				{list.tasks.length === 0 && isVisible && <h2>Задачи отсутствуют</h2>}
 				{
 					list.tasks.map(task => (
 						<div key={task.id} className={'tasks__items-row'}>
