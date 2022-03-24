@@ -28,7 +28,6 @@ body {
 	&__sidebar {
 		background: #e5e5e5;
 		width: 200px;
-		height: 100%;
 		border-right: 1px solid #f1f1f1;
 		padding: 60px 20px;
 	}
@@ -44,6 +43,7 @@ body {
 	border-radius: 4px;
 	padding: 8px 12px;
 	width: 100%;
+	font-size: 14px;
 
 	&:hover {
 		border-color: #b0acac;
@@ -51,7 +51,7 @@ body {
 }
 
 .button {
-	padding: 10px 0;
+	padding: 10px 20px;
 	color: #ffffff;
 	cursor: pointer;
 	background: #4dd599;
@@ -64,5 +64,15 @@ body {
 
 	&:active {
 		background: darken(#4dd599, 10%);
+	}
+	&--grey {
+		background: #f4f6f8;
+		color: #9c9c9c;
+		&:hover {
+			background: darken(#f4f6f8, 2%);
+		}
+		&:active {
+			background: darken(#f4f6f8, 6%);
+		}
 	}
 }
