@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 
 import './Tasks.scss'
@@ -7,6 +7,8 @@ import { ReactComponent as CheckSvg } from '../../assets/img/check-svg.svg'
 import AddTaskForm from './AddTaskForm'
 
 const Tasks = ({ list, onEditTitle, onAddTask }) => {
+
+	const [isVisible, setIsVisible] = useState(true)
 
 	const editTitle = () => {
 		const newTitle = window.prompt('Введите название заголовка', list.name)
@@ -31,7 +33,7 @@ const Tasks = ({ list, onEditTitle, onAddTask }) => {
 				<img onClick={editTitle} src={editSvg} alt={'edit title'} />
 			</h2>
 			<div className={'tasks__items'}>
-				{!list.tasks.length && <h2>Задачи отсутствуют</h2>}
+				{!list.tasks.length && isVisible && <h2>Задачи отсутствуют</h2>}
 				{
 					list.tasks.map(task => (
 						<div key={task.id} className={'tasks__items-row'}>
@@ -43,7 +45,11 @@ const Tasks = ({ list, onEditTitle, onAddTask }) => {
 						</div>
 					))
 				}
-				<AddTaskForm currentTask={list.id} onAddTask={onAddTask} />
+				<AddTaskForm
+					currentTask={list.id}
+					visibleTasksZero={i => setIsVisible(i)}
+					onAddTask={onAddTask}
+				/>
 			</div>
 		</div>
 	)

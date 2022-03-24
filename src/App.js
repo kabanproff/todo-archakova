@@ -23,42 +23,31 @@ function App() {
 			})
 	}, [])
 
+
 	const addLists = obj => {
 		console.log(lists)
 		setLists([...lists, obj])
+
 	}
 
 	const onRemove = (id) => {
 		setLists(lists.filter(i => i.id !== id))
+
 	}
 
 	const onEditTitle = (id, title) => {
+
 		const newLists = lists.map(i => i.id !== id ? i : (i.name = title, i))
 		setLists(newLists)
-	}
-	// console.log('app active item', activeItem, lists)
 
-	const onAddTask = (obj) => {
-		// console.log('app onadd', obj)
-		// console.log('app active itemtask', activeItem)
-		const newLists = lists.map(i => {
-			return i.id === obj.listId
-				? { ...i, tasks: [...i.tasks, obj] }
-				: i
-		})
+
+	}
+
+	const onAddTask = (id, obj) => {
+		console.log('app onadd', obj)
+		const newLists = lists.map(i => i.id === id ? (i.tasks = [...i.tasks, obj], i) : i)
 		setLists(newLists)
-		console.log('new lists', newLists)
-
-		// const newActiveItem = newLists.find(i => activeItem.id === i.id)
-		// console.log(ai, activeItem)
-		setActiveItem(newLists.find(i => activeItem.id === i.id))
 	}
-
-	console.log('------------render----------')
-	// console.log('new lists', lists)
-	// console.log('new active item', activeItem)
-
-
 	return (
 		<div className={'todo'}>
 			<div className={'todo__sidebar'}>

@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 
 import addedSvg from '../../assets/img/added.svg'
 
-const AddTaskForm = ({ currentTask, onAddTask }) => {
+const AddTaskForm = ({ currentTask, onAddTask, visibleTasksZero }) => {
 
 	const [isVisible, setVisible] = useState(false)
 	const [isLoading, setIsLoading] = useState(false)
@@ -12,6 +12,7 @@ const AddTaskForm = ({ currentTask, onAddTask }) => {
 	const toggleFomVisible = () => {
 		setInputValue('')
 		setVisible(!isVisible)
+		visibleTasksZero(isVisible)
 	}
 	const addTask = () => {
 		if (!inputValue) {
@@ -30,7 +31,7 @@ const AddTaskForm = ({ currentTask, onAddTask }) => {
 			.then(({ data }) => {
 				// console.log(data)
 				setIsLoading(false)
-				onAddTask(data)
+				onAddTask(currentTask, data)
 				toggleFomVisible()
 			})
 	}

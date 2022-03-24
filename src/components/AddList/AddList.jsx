@@ -42,9 +42,7 @@ const AddList = ({ colors, addLists }) => {
 					...data,
 					color: {
 						id: selectedColor,
-						// hex: ,
-						name: colorName,
-
+						name: colorName
 					}
 				}
 				console.log(data)
